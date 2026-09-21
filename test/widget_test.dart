@@ -1,30 +1,39 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
 
-import 'package:monymontymovil/main.dart';
+import 'package:monymontymovil/app.dart';
+import 'package:monymontymovil/core/api_client.dart';
+import 'package:monymontymovil/features/auth/data/auth_repository.dart';
+import 'package:monymontymovil/features/auth/state/auth_controller.dart';
+
+/// Repositorio de pruebas: evita cualquier llamada de red real durante el
+/// widget test (`checkAuth` normalmente pega contra la API por HTTP).
+class _NoNetworkAuthRepository extends AuthRepository {
+  _NoNetworkAuthRepository(super.apiClient);
+
+  @override
+  Future<bool> checkAuth() async => false;
+}
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Muestra el formulario de login cuando no hay sesión', (WidgetTester tester) async {
+    final authController = AuthController(_NoNetworkAuthRepository(ApiClient.inMemory()));
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    await tester.pumpWidget(
+      ChangeNotifierProvider.value(
+        value: authController,
+        child: const MonyMontyApp(),
+      ),
+    );
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Sin sesión guardada (ni backend disponible en el test), debe
+    // resolver a "no autenticado" y mostrar la pantalla de login.
+    await authController.bootstrap();
+    await tester.pumpAndSettle();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('MonyMonty'), findsOneWidget);
+    expect(find.widgetWithText(TextFormField, 'Correo electrónico'), findsOneWidget);
+    expect(find.text('Iniciar sesión'), findsOneWidget);
   });
 }

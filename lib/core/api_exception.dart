@@ -31,10 +31,14 @@ class ApiException implements Exception {
     if (e.type == DioExceptionType.connectionTimeout ||
         e.type == DioExceptionType.receiveTimeout ||
         e.type == DioExceptionType.connectionError) {
-      return ApiException('No se pudo conectar con el servidor. Verifica tu conexión.');
+      return ApiException(
+        'No se pudo conectar con el servidor. Verifica tu conexión.',
+      );
     }
 
-    return ApiException('Ocurrió un error inesperado. Intenta nuevamente más tarde.');
+    return ApiException(
+      'Ocurrió un error inesperado. Intenta nuevamente más tarde.',
+    );
   }
 
   @override

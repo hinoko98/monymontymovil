@@ -48,6 +48,58 @@ class AuthController extends ChangeNotifier {
     }
   }
 
+  /// Registra un usuario nuevo. No inicia sesión: el usuario debe hacer login.
+  Future<bool> register({
+    required String nombre,
+    required String apellido,
+    required DateTime fechaNacimiento,
+    required String genero,
+    required String email,
+    required String password,
+    required String planId,
+  }) async {
+    loading = true;
+    errorMessage = null;
+    notifyListeners();
+
+    try {
+      await _repository.register(
+        nombre: nombre,
+        apellido: apellido,
+        fechaNacimiento: fechaNacimiento,
+        genero: genero,
+        email: email,
+        password: password,
+        planId: planId,
+      );
+      return true;
+    } on ApiException catch (e) {
+      errorMessage = e.message;
+      return false;
+    } finally {
+      loading = false;
+      notifyListeners();
+    }
+  }
+
+  /// Pide a la API que envíe el correo para restablecer la contraseña.
+  Future<bool> recuperarCuenta(String email) async {
+    loading = true;
+    errorMessage = null;
+    notifyListeners();
+
+    try {
+      await _repository.recuperarCuenta(email);
+      return true;
+    } on ApiException catch (e) {
+      errorMessage = e.message;
+      return false;
+    } finally {
+      loading = false;
+      notifyListeners();
+    }
+  }
+
   Future<void> logout() async {
     loading = true;
     notifyListeners();

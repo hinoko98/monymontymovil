@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/app_theme.dart';
+import '../../../core/theme_mode_button.dart';
+import '../../../core/widgets/app_fields.dart';
+import '../../../core/widgets/brand_lockup.dart';
 import '../state/auth_controller.dart';
+import 'forgot_password_screen.dart';
+import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -50,192 +55,179 @@ class _LoginScreenState extends State<LoginScreen> {
     if (!mounted) return;
 
     if (!success && auth.errorMessage != null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(auth.errorMessage!)));
+    }
+  }
+
+  Future<void> _openRegister() async {
+    final created = await Navigator.of(
+      context,
+    ).push<bool>(MaterialPageRoute(builder: (_) => const RegisterScreen()));
+
+    if (created == true && mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(auth.errorMessage!)),
+        const SnackBar(
+          content: Text('Cuenta creada. Ya puedes iniciar sesión.'),
+        ),
       );
     }
   }
 
-  void _comingSoon(String feature) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('$feature estará disponible próximamente.')),
-    );
-  }
+  void _openForgotPassword() => Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (_) =>
+          ForgotPasswordScreen(initialEmail: _emailController.text.trim()),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
     final auth = context.watch<AuthController>();
-    final textTheme = Theme.of(context).textTheme;
+    final colors = AppColors.of(context);
+    final enabled = !auth.loading;
 
     return Scaffold(
-      body: DecoratedBox(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Color(0xFF1C1712), AppColors.background],
-            stops: [0, 0.45],
-          ),
-        ),
-        child: SafeArea(
-          child: Center(
-            child: SingleChildScrollView(
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 420),
-                child: Form(
-                  key: _formKey,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Center(
-                        child: Image.asset('assets/images/logo.png', width: 180),
-                      ),
-                      const SizedBox(height: 20),
-                      Text(
-                        'Tu camino hacia la libertad financiera comienza aquí.',
-                        textAlign: TextAlign.center,
-                        style: textTheme.bodyMedium?.copyWith(
-                          color: AppColors.accent,
-                          fontStyle: FontStyle.italic,
-                          height: 1.4,
-                        ),
-                      ),
-                      const SizedBox(height: 32),
-                      Text(
-                        'Bienvenido de nuevo',
-                        style: textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w800),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        'Inicia sesión para gestionar tus finanzas.',
-                        style: textTheme.bodyMedium?.copyWith(color: AppColors.textMuted),
-                      ),
-                      const SizedBox(height: 24),
-                      TextFormField(
-                        controller: _emailController,
-                        keyboardType: TextInputType.emailAddress,
-                        textInputAction: TextInputAction.next,
-                        autofillHints: const [AutofillHints.email],
-                        enabled: !auth.loading,
-                        decoration: const InputDecoration(
-                          hintText: 'Correo electrónico',
-                          prefixIcon: Icon(Icons.mail_outline_rounded),
-                        ),
-                        validator: _validateEmail,
-                      ),
-                      const SizedBox(height: 14),
-                      TextFormField(
-                        controller: _passwordController,
-                        obscureText: _obscurePassword,
-                        textInputAction: TextInputAction.done,
-                        autofillHints: const [AutofillHints.password],
-                        enabled: !auth.loading,
-                        decoration: InputDecoration(
-                          hintText: 'Contraseña',
-                          prefixIcon: const Icon(Icons.lock_outline_rounded),
-                          suffixIcon: IconButton(
-                            tooltip: _obscurePassword ? 'Mostrar contraseña' : 'Ocultar contraseña',
-                            icon: Icon(
-                              _obscurePassword ? Icons.visibility_outlined : Icons.visibility_off_outlined,
-                            ),
-                            onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            const Positioned(top: 0, right: 8, child: ThemeModeButton()),
+            Center(
+              child: SingleChildScrollView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                padding: const EdgeInsets.fromLTRB(24, 32, 24, 24),
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 420),
+                  child: Form(
+                    key: _formKey,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const Center(
+                          child: BrandLockup(
+                            axis: Axis.vertical,
+                            markSize: 64,
+                            fontSize: 22,
                           ),
                         ),
-                        validator: _validatePassword,
-                        onFieldSubmitted: (_) => _onSubmit(),
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
-                          onPressed: auth.loading ? null : () => _comingSoon('Recuperar contraseña'),
-                          style: TextButton.styleFrom(foregroundColor: AppColors.primary),
-                          child: const Text('¿Olvidaste tu contraseña?'),
+                        const SizedBox(height: 36),
+                        Text(
+                          'Bienvenido de nuevo',
+                          style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.w800,
+                            color: colors.title,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      FilledButton(
-                        onPressed: auth.loading ? null : _onSubmit,
-                        style: FilledButton.styleFrom(backgroundColor: AppColors.primary),
-                        child: auth.loading
-                            ? const SizedBox(
-                                height: 22,
-                                width: 22,
-                                child: CircularProgressIndicator(strokeWidth: 2.4, color: Colors.white),
-                              )
-                            : const Text('Iniciar sesión'),
-                      ),
-                      const SizedBox(height: 12),
-                      OutlinedButton(
-                        onPressed: auth.loading ? null : () => _comingSoon('Crear cuenta'),
-                        child: const Text('Crear cuenta'),
-                      ),
-                      const SizedBox(height: 32),
-                      const _FeatureRow(
-                        icon: Icons.person_search_outlined,
-                        title: 'Asesorías personalizadas',
-                        subtitle: 'Orientación adaptada a tus necesidades.',
-                      ),
-                      const _FeatureRow(
-                        icon: Icons.groups_2_outlined,
-                        title: 'Asesorías grupales',
-                        subtitle: 'Aprende y comparte en sesiones interactivas.',
-                      ),
-                      const _FeatureRow(
-                        icon: Icons.trending_up_rounded,
-                        title: 'Gestión moderna',
-                        subtitle: 'Teorías económicas para ahorrar e invertir.',
-                      ),
-                    ],
+                        const SizedBox(height: 6),
+                        Text(
+                          'Inicia sesión para continuar gestionando tus finanzas.',
+                          style: TextStyle(
+                            fontSize: 15,
+                            height: 1.4,
+                            color: colors.muted,
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        AppTextField(
+                          label: 'Correo electrónico',
+                          hint: 'tucorreo@ejemplo.com',
+                          controller: _emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          textInputAction: TextInputAction.next,
+                          autofillHints: const [AutofillHints.email],
+                          enabled: enabled,
+                          validator: _validateEmail,
+                        ),
+                        const SizedBox(height: 16),
+                        AppTextField(
+                          label: 'Contraseña',
+                          hint: '••••••••',
+                          controller: _passwordController,
+                          obscureText: _obscurePassword,
+                          textInputAction: TextInputAction.done,
+                          autofillHints: const [AutofillHints.password],
+                          enabled: enabled,
+                          validator: _validatePassword,
+                          onFieldSubmitted: (_) => _onSubmit(),
+                          suffixIcon: IconButton(
+                            tooltip: _obscurePassword
+                                ? 'Mostrar contraseña'
+                                : 'Ocultar contraseña',
+                            icon: Icon(
+                              _obscurePassword
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                            ),
+                            onPressed: () => setState(
+                              () => _obscurePassword = !_obscurePassword,
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            onPressed: enabled ? _openForgotPassword : null,
+                            child: const Text('¿Olvidaste tu contraseña?'),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        FilledButton(
+                          onPressed: enabled ? _onSubmit : null,
+                          child: auth.loading
+                              ? const SizedBox(
+                                  height: 22,
+                                  width: 22,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2.4,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              : const Text('Iniciar Sesión'),
+                        ),
+                        const SizedBox(height: 12),
+                        FilledButton(
+                          onPressed: enabled ? _openRegister : null,
+                          style: FilledButton.styleFrom(
+                            backgroundColor: colors.secondary,
+                          ),
+                          child: const Text('Crear Cuenta'),
+                        ),
+                        const SizedBox(height: 32),
+                        Center(
+                          child: GestureDetector(
+                            onTap: enabled ? _openRegister : null,
+                            child: Text.rich(
+                              TextSpan(
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: colors.muted,
+                                ),
+                                children: [
+                                  const TextSpan(text: '¿No tienes cuenta? '),
+                                  TextSpan(
+                                    text: 'Regístrate',
+                                    style: TextStyle(
+                                      color: colors.primary,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
+          ],
         ),
-      ),
-    );
-  }
-}
-
-class _FeatureRow extends StatelessWidget {
-  const _FeatureRow({required this.icon, required this.title, required this.subtitle});
-
-  final IconData icon;
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 14),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: AppColors.accent.withValues(alpha: 0.12),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Icon(icon, size: 20, color: AppColors.accent),
-          ),
-          const SizedBox(width: 14),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title, style: textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w700)),
-                const SizedBox(height: 2),
-                Text(subtitle, style: textTheme.bodySmall?.copyWith(color: AppColors.textMuted)),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }

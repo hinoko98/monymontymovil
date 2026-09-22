@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../core/theme_mode_button.dart';
 import '../../auth/state/auth_controller.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -15,10 +16,13 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('MonyMonty'),
         actions: [
+          const ThemeModeButton(),
           IconButton(
             tooltip: 'Cerrar sesión',
             icon: const Icon(Icons.logout),
-            onPressed: auth.loading ? null : () => context.read<AuthController>().logout(),
+            onPressed: auth.loading
+                ? null
+                : () => context.read<AuthController>().logout(),
           ),
         ],
       ),
@@ -31,19 +35,27 @@ class HomeScreen extends StatelessWidget {
               CircleAvatar(
                 radius: 40,
                 child: Text(
-                  (usuario?.nombre.isNotEmpty == true ? usuario!.nombre[0] : '?').toUpperCase(),
+                  (usuario?.nombre.isNotEmpty == true
+                          ? usuario!.nombre[0]
+                          : '?')
+                      .toUpperCase(),
                   style: const TextStyle(fontSize: 32),
                 ),
               ),
               const SizedBox(height: 16),
               Text(
-                usuario?.nombre.isNotEmpty == true ? '¡Hola, ${usuario!.nombre}!' : '¡Sesión iniciada!',
+                usuario?.nombre.isNotEmpty == true
+                    ? '¡Hola, ${usuario!.nombre}!'
+                    : '¡Sesión iniciada!',
                 style: Theme.of(context).textTheme.titleLarge,
                 textAlign: TextAlign.center,
               ),
               if (usuario?.email.isNotEmpty == true) ...[
                 const SizedBox(height: 4),
-                Text(usuario!.email, style: Theme.of(context).textTheme.bodyMedium),
+                Text(
+                  usuario!.email,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
               ],
             ],
           ),

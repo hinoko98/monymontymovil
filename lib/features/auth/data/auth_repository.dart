@@ -30,6 +30,55 @@ class AuthRepository {
     }
   }
 
+  /// Crea una cuenta nueva (mismo endpoint `POST user` que usa la web).
+  Future<void> register({
+    required String nombre,
+    required String apellido,
+    required DateTime fechaNacimiento,
+    required String genero,
+    required String email,
+    required String password,
+    required String planId,
+  }) async {
+    try {
+      final response = await _dio.post(
+        'user',
+        data: {
+          'nombre': nombre,
+          'apellido': apellido,
+          'fechaNacimiento': fechaNacimiento.toIso8601String(),
+          'genero': genero,
+          'email': email,
+          'password': password,
+          'planId': planId,
+          'acceptLegal': true,
+        },
+      );
+
+      if (response.statusCode != 201) {
+        throw ApiException('No se pudo crear la cuenta');
+      }
+    } on DioException catch (e) {
+      throw ApiException.fromDioException(e);
+    }
+  }
+
+  /// Envía el correo con el enlace para restablecer la contraseña.
+  Future<void> recuperarCuenta(String email) async {
+    try {
+      final response = await _dio.post(
+        'auth/recuperar',
+        data: {'email': email},
+      );
+
+      if (response.statusCode != 200) {
+        throw ApiException('No se pudo enviar el correo de recuperación');
+      }
+    } on DioException catch (e) {
+      throw ApiException.fromDioException(e);
+    }
+  }
+
   /// Verifica si hay una sesión activa (cookie válida en el dispositivo).
   Future<bool> checkAuth() async {
     try {

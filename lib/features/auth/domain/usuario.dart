@@ -1,6 +1,11 @@
 /// Datos del usuario devueltos por `GET /user/me`.
 class Usuario {
-  const Usuario({required this.id, required this.nombre, required this.email, this.avatar});
+  const Usuario({
+    required this.id,
+    required this.nombre,
+    required this.email,
+    this.avatar,
+  });
 
   final String id;
   final String nombre;

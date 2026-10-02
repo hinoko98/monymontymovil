@@ -33,6 +33,10 @@
 	-->
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<!-- Permite HTTP hacia hosts de la red local (iPhone físico apuntando
+		     a la IP de tu PC). No afecta al tráfico hacia internet. -->
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>localhost</key>

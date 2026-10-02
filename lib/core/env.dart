@@ -20,11 +20,16 @@ class Env {
   ///   PC en la red local, y corre la API con `EXPRESS_HOST=0.0.0.0`.
   static String get apiBaseUrl {
     const override = String.fromEnvironment('API_BASE_URL');
-    if (override.isNotEmpty) return override;
+    if (override.isNotEmpty) return _conBarraFinal(override);
 
     if (Platform.isAndroid) {
       return 'http://10.0.2.2:3000/';
     }
     return 'http://localhost:3000/';
   }
+
+  /// Dio pega la ruta directamente al final del `baseUrl`. Sin la barra final,
+  /// `http://192.168.1.10:3000` + `auth/login` quedaría como
+  /// `http://192.168.1.10:3000auth/login`, así que se agrega si falta.
+  static String _conBarraFinal(String url) => url.endsWith('/') ? url : '$url/';
 }

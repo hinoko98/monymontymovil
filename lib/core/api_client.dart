@@ -34,24 +34,30 @@ class ApiClient {
 
   /// Cliente sin persistencia en disco (cookies solo en memoria), útil para
   /// tests de widgets donde no hay canal de plataforma para `path_provider`.
-  factory ApiClient.inMemory() {
+  ///
+  /// [baseUrl] permite apuntar a un servidor de pruebas en vez de a la API.
+  factory ApiClient.inMemory({String? baseUrl}) {
     final cookieJar = CookieJar();
-    final client = ApiClient._internal(_buildDio(), cookieJar);
+    final client = ApiClient._internal(_buildDio(baseUrl), cookieJar);
     client.dio.interceptors.add(CookieManager(cookieJar));
     return client;
   }
 
-  static Dio _buildDio() {
+  static Dio _buildDio([String? baseUrl]) {
     return Dio(
       BaseOptions(
-        baseUrl: Env.apiBaseUrl,
+        baseUrl: baseUrl ?? Env.apiBaseUrl,
         // Cortos a propósito: si la API no está levantada (p. ej. probando
         // solo la UI), la app no debe quedarse pegada en el splash.
         connectTimeout: const Duration(seconds: 5),
         receiveTimeout: const Duration(seconds: 5),
         // Igual que `withCredentials: true` en axios: el jar de cookies se
         // encarga de adjuntar la cookie de sesión en cada request.
-        validateStatus: (status) => status != null && status < 500,
+        //
+        // Cualquier respuesta 4xx/5xx lanza DioException con el cuerpo de la
+        // respuesta adjunto, para que ApiException pueda leer el mensaje real
+        // de la API (`{message}` o `{errors:[{msg}]}`) en vez de uno genérico.
+        validateStatus: (status) => status != null && status < 400,
       ),
     );
   }

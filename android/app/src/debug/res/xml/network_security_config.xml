@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Solo para builds de depuración: reemplaza la configuración de red de
+  `src/main` y permite HTTP sin TLS hacia cualquier host.
+
+  Hace falta para probar en un teléfono físico, que llega a la API por la IP
+  de tu PC en la red local (p. ej. http://192.168.1.10:3000) y no por
+  localhost ni 10.0.2.2.
+
+  Los builds de release siguen usando la configuración estricta de
+  `src/main/res/xml/network_security_config.xml`.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>

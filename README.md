@@ -1,20 +1,18 @@
 # MonyMonty Mobile
 
-Aplicación móvil de **MonyMonty** para la gestión de finanzas personales, desarrollada para **Android e iOS** utilizando **Flutter**.
+Aplicación móvil de **MonyMonty** para la gestión de finanzas personales, desarrollada para **Android** utilizando **Kotlin** y **Jetpack Compose**.
 
 MonyMonty busca ofrecer una experiencia sencilla para que las personas puedan registrar, organizar y consultar su información financiera desde cualquier lugar.
 
 ## Plataformas
 
 * Android
-* iOS
 
 ## Tecnologías
 
-* **Flutter**
-* **Dart**
+* **Kotlin**
+* **Jetpack Compose**
 * Android
-* iOS
 * API REST de MonyMonty
 
 ## Arquitectura
@@ -25,8 +23,8 @@ La aplicación móvil funciona como cliente de la plataforma MonyMonty y consume
 ┌──────────────────────┐
 │    MonyMonty Mobile  │
 │                      │
-│       Flutter        │
-│         Dart         │
+│        Kotlin        │
+│   Jetpack Compose    │
 └──────────┬───────────┘
            │
            │ API REST

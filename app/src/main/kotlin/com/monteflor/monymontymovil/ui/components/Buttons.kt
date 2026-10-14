@@ -1,4 +1,4 @@
-package com.example.monymontymovil.ui.components
+package com.monteflor.monymontymovil.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -27,10 +27,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
-import com.example.monymontymovil.ui.theme.ActionOrange
-import com.example.monymontymovil.ui.theme.Charcoal
-import com.example.monymontymovil.ui.theme.SandLine
-import com.example.monymontymovil.ui.theme.pressScale
+import com.monteflor.monymontymovil.ui.theme.ActionOrange
+import com.monteflor.monymontymovil.ui.theme.Charcoal
+import com.monteflor.monymontymovil.ui.theme.SandLine
+import com.monteflor.monymontymovil.ui.theme.pressScale
 
 // Áreas táctiles de 54 dp (≥ 44) y bordes de 18 dp, dentro del rango 16–28 que pide el diseño.
 private val ButtonShape = RoundedCornerShape(18.dp)

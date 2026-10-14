@@ -1,4 +1,4 @@
-package com.example.monymontymovil.ui.auth
+package com.monteflor.monymontymovil.ui.auth
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -6,8 +6,8 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.monymontymovil.data.AuthRepository
-import com.example.monymontymovil.data.LoginResult
+import com.monteflor.monymontymovil.data.AuthRepository
+import com.monteflor.monymontymovil.data.LoginResult
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val auth: AuthRepository) : ViewModel() {

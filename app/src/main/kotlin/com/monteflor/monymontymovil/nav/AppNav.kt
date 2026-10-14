@@ -1,4 +1,4 @@
-package com.example.monymontymovil.nav
+package com.monteflor.monymontymovil.nav
 
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.EnterTransition
@@ -21,17 +21,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.monymontymovil.MonyMontyApp
-import com.example.monymontymovil.ui.auth.LoginScreen
-import com.example.monymontymovil.ui.auth.LoginViewModel
-import com.example.monymontymovil.ui.home.ComingSoonScreen
-import com.example.monymontymovil.ui.home.HomePlaceholderScreen
-import com.example.monymontymovil.ui.theme.MmEasing
-import com.example.monymontymovil.ui.welcome.CurrencyScreen
-import com.example.monymontymovil.ui.welcome.OnboardingScreen
-import com.example.monymontymovil.ui.welcome.ReadyScreen
-import com.example.monymontymovil.ui.welcome.SplashScreen
-import com.example.monymontymovil.ui.welcome.WelcomeScreen
+import com.monteflor.monymontymovil.MonyMontyApp
+import com.monteflor.monymontymovil.ui.auth.LoginScreen
+import com.monteflor.monymontymovil.ui.auth.LoginViewModel
+import com.monteflor.monymontymovil.ui.home.ComingSoonScreen
+import com.monteflor.monymontymovil.ui.home.HomePlaceholderScreen
+import com.monteflor.monymontymovil.ui.theme.MmEasing
+import com.monteflor.monymontymovil.ui.welcome.CurrencyScreen
+import com.monteflor.monymontymovil.ui.welcome.OnboardingScreen
+import com.monteflor.monymontymovil.ui.welcome.ReadyScreen
+import com.monteflor.monymontymovil.ui.welcome.SplashScreen
+import com.monteflor.monymontymovil.ui.welcome.WelcomeScreen
 import kotlinx.coroutines.launch
 
 private object Route {

@@ -1,4 +1,4 @@
-package com.example.monymontymovil.ui.welcome
+package com.monteflor.monymontymovil.ui.welcome
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
@@ -41,21 +41,21 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.monymontymovil.data.Currency
-import com.example.monymontymovil.data.StartCurrencies
-import com.example.monymontymovil.ui.components.BackButton
-import com.example.monymontymovil.ui.components.PrimaryButton
-import com.example.monymontymovil.ui.theme.ActionOrange
-import com.example.monymontymovil.ui.theme.BrandOrange
-import com.example.monymontymovil.ui.theme.Charcoal
-import com.example.monymontymovil.ui.theme.Cream
-import com.example.monymontymovil.ui.theme.Outfit
-import com.example.monymontymovil.ui.theme.PeachSoft
-import com.example.monymontymovil.ui.theme.SandFill
-import com.example.monymontymovil.ui.theme.SandLine
-import com.example.monymontymovil.ui.theme.TextMuted
-import com.example.monymontymovil.ui.theme.pop
-import com.example.monymontymovil.ui.theme.reveal
+import com.monteflor.monymontymovil.data.Currency
+import com.monteflor.monymontymovil.data.StartCurrencies
+import com.monteflor.monymontymovil.ui.components.BackButton
+import com.monteflor.monymontymovil.ui.components.PrimaryButton
+import com.monteflor.monymontymovil.ui.theme.ActionOrange
+import com.monteflor.monymontymovil.ui.theme.BrandOrange
+import com.monteflor.monymontymovil.ui.theme.Charcoal
+import com.monteflor.monymontymovil.ui.theme.Cream
+import com.monteflor.monymontymovil.ui.theme.Outfit
+import com.monteflor.monymontymovil.ui.theme.PeachSoft
+import com.monteflor.monymontymovil.ui.theme.SandFill
+import com.monteflor.monymontymovil.ui.theme.SandLine
+import com.monteflor.monymontymovil.ui.theme.TextMuted
+import com.monteflor.monymontymovil.ui.theme.pop
+import com.monteflor.monymontymovil.ui.theme.reveal
 
 /** 06 · Elige tu divisa: la selección se anima y el botón cambia a la moneda elegida. */
 @Composable

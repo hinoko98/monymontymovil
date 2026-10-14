@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.monymontymovil"
+    namespace = "com.monteflor.monymontymovil"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.monymontymovil"
+        applicationId = "com.monteflor.monymontymovil"
         // 26: las fuentes variables (Outfit, DM Sans) solo aplican el peso desde Android 8
         minSdk = 26
         targetSdk = 36

@@ -1,4 +1,4 @@
-package com.example.monymontymovil.ui.welcome
+package com.monteflor.monymontymovil.ui.welcome
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.RepeatMode
@@ -35,12 +35,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.monymontymovil.ui.components.MonyLogo
-import com.example.monymontymovil.ui.theme.BrandOrange
-import com.example.monymontymovil.ui.theme.DmSans
-import com.example.monymontymovil.ui.theme.LocalReduceMotion
-import com.example.monymontymovil.ui.theme.breathing
-import com.example.monymontymovil.ui.theme.pop
+import com.monteflor.monymontymovil.ui.components.MonyLogo
+import com.monteflor.monymontymovil.ui.theme.BrandOrange
+import com.monteflor.monymontymovil.ui.theme.DmSans
+import com.monteflor.monymontymovil.ui.theme.LocalReduceMotion
+import com.monteflor.monymontymovil.ui.theme.breathing
+import com.monteflor.monymontymovil.ui.theme.pop
 import kotlinx.coroutines.delay
 
 private val DeepOrange = Color(0xFFE04F25)

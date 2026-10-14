@@ -1,4 +1,4 @@
-package com.example.monymontymovil.ui.theme
+package com.monteflor.monymontymovil.ui.theme
 
 import android.provider.Settings
 import androidx.compose.animation.core.Animatable

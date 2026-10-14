@@ -1,4 +1,4 @@
-package com.example.monymontymovil.ui.home
+package com.monteflor.monymontymovil.ui.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -16,12 +16,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.monymontymovil.ui.components.BackButton
-import com.example.monymontymovil.ui.components.PrimaryButton
-import com.example.monymontymovil.ui.components.SecondaryButton
-import com.example.monymontymovil.ui.theme.Charcoal
-import com.example.monymontymovil.ui.theme.Cream
-import com.example.monymontymovil.ui.theme.TextMuted
+import com.monteflor.monymontymovil.ui.components.BackButton
+import com.monteflor.monymontymovil.ui.components.PrimaryButton
+import com.monteflor.monymontymovil.ui.components.SecondaryButton
+import com.monteflor.monymontymovil.ui.theme.Charcoal
+import com.monteflor.monymontymovil.ui.theme.Cream
+import com.monteflor.monymontymovil.ui.theme.TextMuted
 
 /** Tablero provisional (pantalla 15 del diseño, pendiente): confirma que el login con la API funcionó. */
 @Composable

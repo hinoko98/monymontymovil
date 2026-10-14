@@ -1,10 +1,10 @@
-package com.example.monymontymovil.ui.theme
+package com.monteflor.monymontymovil.ui.theme
 
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontVariation
 import androidx.compose.ui.text.font.FontWeight
-import com.example.monymontymovil.R
+import com.monteflor.monymontymovil.R
 
 @OptIn(androidx.compose.ui.text.ExperimentalTextApi::class)
 private fun variable(res: Int, vararg weights: FontWeight) = FontFamily(

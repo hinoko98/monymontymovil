@@ -1,7 +1,7 @@
-package com.example.monymontymovil.data
+package com.monteflor.monymontymovil.data
 
 import android.content.Context
-import com.example.monymontymovil.BuildConfig
+import com.monteflor.monymontymovil.BuildConfig
 import okhttp3.Cookie
 import okhttp3.CookieJar
 import okhttp3.HttpUrl

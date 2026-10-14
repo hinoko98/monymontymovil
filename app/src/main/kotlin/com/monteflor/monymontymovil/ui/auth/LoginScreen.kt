@@ -1,4 +1,4 @@
-package com.example.monymontymovil.ui.auth
+package com.monteflor.monymontymovil.ui.auth
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Animatable
@@ -56,19 +56,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.monymontymovil.ui.components.MonyLogo
-import com.example.monymontymovil.ui.components.PrimaryButton
-import com.example.monymontymovil.ui.components.SecondaryButton
-import com.example.monymontymovil.ui.theme.ActionOrange
-import com.example.monymontymovil.ui.theme.BrandOrange
-import com.example.monymontymovil.ui.theme.Charcoal
-import com.example.monymontymovil.ui.theme.Cream
-import com.example.monymontymovil.ui.theme.ErrorBg
-import com.example.monymontymovil.ui.theme.LocalReduceMotion
-import com.example.monymontymovil.ui.theme.Peach
-import com.example.monymontymovil.ui.theme.SandLine
-import com.example.monymontymovil.ui.theme.TextMuted
-import com.example.monymontymovil.ui.theme.reveal
+import com.monteflor.monymontymovil.ui.components.MonyLogo
+import com.monteflor.monymontymovil.ui.components.PrimaryButton
+import com.monteflor.monymontymovil.ui.components.SecondaryButton
+import com.monteflor.monymontymovil.ui.theme.ActionOrange
+import com.monteflor.monymontymovil.ui.theme.BrandOrange
+import com.monteflor.monymontymovil.ui.theme.Charcoal
+import com.monteflor.monymontymovil.ui.theme.Cream
+import com.monteflor.monymontymovil.ui.theme.ErrorBg
+import com.monteflor.monymontymovil.ui.theme.LocalReduceMotion
+import com.monteflor.monymontymovil.ui.theme.Peach
+import com.monteflor.monymontymovil.ui.theme.SandLine
+import com.monteflor.monymontymovil.ui.theme.TextMuted
+import com.monteflor.monymontymovil.ui.theme.reveal
 import kotlin.math.roundToInt
 
 /** 07 · Iniciar sesión (conectado a POST /auth/login). El formulario se sacude si algo falla. */

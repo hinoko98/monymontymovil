@@ -1,4 +1,4 @@
-package com.example.monymontymovil.ui.components
+package com.monteflor.monymontymovil.ui.components
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Column
@@ -19,7 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
-import com.example.monymontymovil.ui.theme.Outfit
+import com.monteflor.monymontymovil.ui.theme.Outfit
 
 /**
  * Logotipo MONY / MONTY con las dobles flechas hacia arriba.

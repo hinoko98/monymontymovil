@@ -1,4 +1,4 @@
-package com.example.monymontymovil.ui.theme
+package com.monteflor.monymontymovil.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

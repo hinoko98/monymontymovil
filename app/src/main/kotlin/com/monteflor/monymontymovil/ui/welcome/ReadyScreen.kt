@@ -1,4 +1,4 @@
-package com.example.monymontymovil.ui.welcome
+package com.monteflor.monymontymovil.ui.welcome
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
@@ -34,13 +34,13 @@ import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.monymontymovil.ui.components.PrimaryButton
-import com.example.monymontymovil.ui.theme.BrandOrange
-import com.example.monymontymovil.ui.theme.Charcoal
-import com.example.monymontymovil.ui.theme.LocalReduceMotion
-import com.example.monymontymovil.ui.theme.MmEasing
-import com.example.monymontymovil.ui.theme.pop
-import com.example.monymontymovil.ui.theme.reveal
+import com.monteflor.monymontymovil.ui.components.PrimaryButton
+import com.monteflor.monymontymovil.ui.theme.BrandOrange
+import com.monteflor.monymontymovil.ui.theme.Charcoal
+import com.monteflor.monymontymovil.ui.theme.LocalReduceMotion
+import com.monteflor.monymontymovil.ui.theme.MmEasing
+import com.monteflor.monymontymovil.ui.theme.pop
+import com.monteflor.monymontymovil.ui.theme.reveal
 import kotlinx.coroutines.delay
 
 /**
@@ -107,7 +107,7 @@ fun ReadyScreen(currencyCode: String, onLogin: () -> Unit, onCreateAccount: () -
             Text(currencyCode, style = MaterialTheme.typography.titleMedium, color = Color.White)
         }
         Spacer(Modifier.weight(1f))
-        PrimaryButton("Crear mi cuenta", onCreateAccount, container = Color.White, content = com.example.monymontymovil.ui.theme.ActionOrange, modifier = Modifier.reveal(5))
+        PrimaryButton("Crear mi cuenta", onCreateAccount, container = Color.White, content = com.monteflor.monymontymovil.ui.theme.ActionOrange, modifier = Modifier.reveal(5))
         Spacer(Modifier.height(10.dp))
         PrimaryButton("Ya tengo una cuenta", onLogin, container = Color.Transparent, content = Color.White, modifier = Modifier.reveal(6))
         Spacer(Modifier.height(20.dp))

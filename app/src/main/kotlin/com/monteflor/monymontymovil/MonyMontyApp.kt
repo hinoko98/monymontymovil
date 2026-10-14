@@ -1,10 +1,10 @@
-package com.example.monymontymovil
+package com.monteflor.monymontymovil
 
 import android.app.Application
-import com.example.monymontymovil.data.ApiClient
-import com.example.monymontymovil.data.AppPrefs
-import com.example.monymontymovil.data.AuthRepository
-import com.example.monymontymovil.data.PersistentCookieJar
+import com.monteflor.monymontymovil.data.ApiClient
+import com.monteflor.monymontymovil.data.AppPrefs
+import com.monteflor.monymontymovil.data.AuthRepository
+import com.monteflor.monymontymovil.data.PersistentCookieJar
 
 class MonyMontyApp : Application() {
     lateinit var prefs: AppPrefs
